@@ -28,31 +28,33 @@ export default {
         .then(res => {
           store.arrayCards = res.data.results;
 
-
         })
         .catch(err => {
           console.log("errori", err)
         });
 
+
+    },
+    getApiTv() {
+      let apiTv = `https:api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
       if (store.searchInput !== "") {
-        this.showDiv = false
-        api = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
+        axios
+          .get(apiTv)
+          .then(res => {
+            store.arrayCardsTv = res.data.results;
+
+          })
+          .catch(err => {
+            console.log("errori", err)
+          });
+
       }
-      axios
-        .get(api)
-        .then(res => {
-          store.arrayCardsTv = res.data.results;
-
-        })
-        .catch(err => {
-          console.log("errori", err)
-        });
-
     },
 
   },
   mounted() {
     this.getApiMovie()
+    this.getApiTv()
 
   }
 }
@@ -64,7 +66,7 @@ export default {
   </header>
 
   <main>
-    <Search @searchFunction="getApiMovie" />
+    <Search @searchFunction="getApiMovie, getApiTv" />
     <div class="popular" v-if="showDiv">POPULAR</div>
     <div class="popular" v-if="!showDiv">BEST RESULTS</div>
     <MainList />
