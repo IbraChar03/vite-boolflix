@@ -52,13 +52,13 @@ export default {
             </div>
 
             <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
-                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title>
+                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name>
                 <div class="cont-text">
                     <div class="row title">
-                        Title : {{ item.title }}
+                        Title : {{ item.name }}
                     </div>
                     <div class="row title">
-                        Original title : {{ item.original_title }}
+                        Original title : {{ item.original_name }}
                     </div>
                     <div class="row language" v-if="item.original_language !== `en` && item.original_language !== `ja`">
                         Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"

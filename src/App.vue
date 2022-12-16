@@ -33,27 +33,33 @@ export default {
           console.log("errori", err)
         });
 
-
     },
     getApiTv() {
       let apiTv = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
-      axios
-        .get(apiTv)
-        .then(res => {
-          store.arrayCardsTv = res.data.results;
+      if (store.searchInput !== "") {
 
-        })
-        .catch(err => {
-          console.log("errori", err)
-        });
+
+        axios
+          .get(apiTv)
+          .then(res => {
+            store.arrayCardsTv = res.data.results;
+
+          })
+          .catch(err => {
+            console.log("errori", err)
+          });
+      }
 
 
     },
+    getSearchResults() {
+      this.getApiMovie();
+      this.getApiTv();
+    }
 
   },
   mounted() {
-    this.getApiMovie()
-    this.getApiTv()
+    this.getSearchResults()
 
   }
 }
@@ -65,7 +71,7 @@ export default {
   </header>
 
   <main>
-    <Search @searchFunction="getApiMovie, getApiTv" />
+    <Search @search="getSearchResults" />
     <div class="popular" v-if="showDiv">POPULAR</div>
     <div class="popular" v-if="!showDiv">BEST RESULTS</div>
     <MainList />
