@@ -26,8 +26,7 @@ export default {
                 <div class="row title">
                     Original title : {{ item.original_title }}
                 </div>
-
-                <div class="row language" v-if="item.original_language !== `en` || item.original_language !== `ja`">
+                <div class="row language" v-if="item.original_language !== `en` && item.original_language !== `ja`">
                     Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"
                         :alt=item.original_language class="flag">
                 </div>
