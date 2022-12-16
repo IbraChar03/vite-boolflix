@@ -36,19 +36,18 @@ export default {
 
     },
     getApiTv() {
-      let apiTv = `https:api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
-      if (store.searchInput !== "") {
-        axios
-          .get(apiTv)
-          .then(res => {
-            store.arrayCardsTv = res.data.results;
+      let apiTv = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
+      axios
+        .get(apiTv)
+        .then(res => {
+          store.arrayCardsTv = res.data.results;
 
-          })
-          .catch(err => {
-            console.log("errori", err)
-          });
+        })
+        .catch(err => {
+          console.log("errori", err)
+        });
 
-      }
+
     },
 
   },

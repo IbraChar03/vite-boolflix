@@ -16,6 +16,7 @@ export default {
 
 <template>
   <Card :arrCards="store.arrayCards" />
+  <Card :arrCardsTv="store.arrayCardsTv" />
 
 </template>
 
