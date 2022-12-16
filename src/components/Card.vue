@@ -8,6 +8,9 @@ export default {
         return {
             store
         }
+    },
+    methods: {
+
     }
 }
 </script>
@@ -23,9 +26,15 @@ export default {
                 <div class="row title">
                     Original title : {{ item.original_title }}
                 </div>
+
                 <div class="row language">
-                    Language : {{ item.original_language }}
+                    Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`" alt=""
+                        class="flag">
                 </div>
+                <div class="row language" v-if="item.original_language == `en`">
+                    Language : <img src="/images/england.png" alt="" class="flag">
+                </div>
+
                 <div class="row vote">
                     Vote average : {{ item.vote_average }}
                 </div>
@@ -50,11 +59,29 @@ export default {
         height: 100%;
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
 
         .card {
-            width: calc(100% / 4 - 10px);
+            width: calc(100% / 6 - 10px);
             margin: 5px;
-            height: 300px;
+            height: 200px;
+            margin-top: 30px;
+            margin-bottom: 150px;
+
+            .row {
+                max-width: 135px;
+                margin-bottom: 3px;
+            }
+
+            .flag {
+                width: 20px;
+                height: 15px;
+                vertical-align: middle;
+            }
+
+            img {
+                height: 200px;
+            }
 
         }
     }

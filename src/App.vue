@@ -8,17 +8,19 @@ export default {
   components: {
     MainList,
     HeaderVue,
-    Search
+    Search,
   },
   data() {
     return {
-      store
+      store,
+      showDiv: true,
     }
   },
   methods: {
     getApiMovie() {
       let api = `${store.apiMovie}?${store.apiKey}&page=1`
       if (store.searchInput !== "") {
+        this.showDiv = false
         api = `https://api.themoviedb.org/3/search/movie?${store.apiKey}&query=${store.searchInput}`
       }
       axios
@@ -46,10 +48,18 @@ export default {
 
   <main>
     <Search @searchFunction="getApiMovie" />
+    <div class="popular" v-if="showDiv">POPULAR</div>
     <MainList />
   </main>
 </template>
 
 <style lang="scss">
+@use "./styles/general.scss" as *;
 
+.popular {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
 </style>
