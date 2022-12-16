@@ -1,5 +1,8 @@
 <script >
 export default {
+    props: {
+        arrCards: Array
+    },
     data() {
         return {
 
@@ -9,6 +12,11 @@ export default {
 </script>
 
 <template>
+    <div class="container">
+        <div class="card" v-for="(item, index) in arrCards" :key="item.id">
+            <img src="" alt="">
+        </div>
+    </div>
 
 </template>
 

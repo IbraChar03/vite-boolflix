@@ -1,11 +1,13 @@
 <script >
 import Card from './Card.vue'
+import { store } from "../store.js"
 export default {
   components: {
     Card
   },
   data() {
     return {
+      store
 
     }
   }
@@ -13,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <Card />
+  <Card :arrCards="store.arrayCards" />
 
 </template>
 
