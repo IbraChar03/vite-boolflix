@@ -42,6 +42,8 @@ export default {
 
                     Vote: <font-awesome-icon icon="fa-solid fa-star " class="star"
                         v-for="item in Math.round(item.vote_average / 2)" />
+                    <font-awesome-icon icon="fa-solid fa-star " class="star2"
+                        v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
                 </div>
 
@@ -75,7 +77,13 @@ export default {
 
             .star {
                 color: yellow;
-                font-size: 13px;
+                font-size: 15px;
+
+            }
+
+            .star2 {
+                color: #b2b2b2;
+                font-size: 15px;
             }
 
             .row {
