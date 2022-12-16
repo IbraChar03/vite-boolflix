@@ -17,15 +17,12 @@ export default {
   },
   methods: {
     getApiMovie() {
-      let api = store.apiMovie
+      let api = `${store.apiMovie}?${store.apiKey}&page=1`
       if (store.searchInput !== "") {
-        api += `?${store.apiKeyapiKey}&query=${store.searchInput}`
+        api = `https://api.themoviedb.org/3/search/movie?${store.apiKey}&query=${store.searchInput}`
       }
-
-
-
       axios
-        .get(store.apiMovie)
+        .get(api)
         .then(res => {
           store.arrayCards = res.data.results;
 
@@ -33,7 +30,6 @@ export default {
         .catch(err => {
           console.log("errori", err)
         });
-
 
     }
   },

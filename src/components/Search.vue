@@ -11,7 +11,7 @@ export default {
 
 <template>
     <div class="cont">
-        <input type="text" v-model="store.searchInput" @keyup.enter="searchFunction">
+        <input type="text" v-model="store.searchInput" @keyup="$emit(`searchFunction`)">
     </div>
 
 </template>
