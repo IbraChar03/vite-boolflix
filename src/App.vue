@@ -28,15 +28,48 @@ export default {
         .then(res => {
           store.arrayCards = res.data.results;
 
+
         })
         .catch(err => {
           console.log("errori", err)
         });
 
-    }
+      if (store.searchInput !== "") {
+        this.showDiv = false
+        api = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
+      }
+      axios
+        .get(api)
+        .then(res => {
+          store.arrayCardsTv = res.data.results;
+
+        })
+        .catch(err => {
+          console.log("errori", err)
+        });
+
+    },
+    // getApiTv() {
+    //   let api = `${store.apiMovie}?${store.apiKey}&page=1`
+    //   if (store.searchInput !== "") {
+    //     this.showDiv = false
+    //     api = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
+    //   }
+    //   axios
+    //     .get(api)
+    //     .then(res => {
+    //       store.arrayCardsTv = res.data.results;
+
+    //     })
+    //     .catch(err => {
+    //       console.log("errori", err)
+    //     });
+
+    // }
   },
   mounted() {
     this.getApiMovie()
+    // this.getApiTv()
   }
 }
 </script>

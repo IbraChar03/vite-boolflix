@@ -19,7 +19,7 @@ export default {
     <section class="main">
         <div class="container">
             <div class="card" v-for="(item, index) in arrCards" :key="item.id">
-                <img :src="`${store.UrlImage}${item.poster_path}`" alt="">
+                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title>
                 <div class="row title">
                     Title : {{ item.title }}
                 </div>
@@ -27,16 +27,22 @@ export default {
                     Original title : {{ item.original_title }}
                 </div>
 
-                <div class="row language">
-                    Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`" alt=""
-                        class="flag">
+                <div class="row language" v-if="item.original_language !== `en` || item.original_language !== `ja`">
+                    Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"
+                        :alt=item.original_language class="flag">
                 </div>
-                <div class="row language" v-if="item.original_language == `en`">
-                    Language : <img src="/images/england.png" alt="" class="flag">
+                <div class="row language" v-else-if="item.original_language == `en`">
+                    Language : <img src="/images/england.png" alt="en" class="flag">
+                </div>
+                <div class="row language" v-else-if="item.original_language == `ja`">
+                    Language : <img src="/images/japan.png" alt="ja" class="flag">
                 </div>
 
                 <div class="row vote">
-                    Vote average : {{ item.vote_average }}
+
+                    Vote: <font-awesome-icon icon="fa-solid fa-star " class="star"
+                        v-for="item in Math.round(item.vote_average / 2)" />
+
                 </div>
 
 
@@ -62,14 +68,18 @@ export default {
         flex-wrap: wrap;
 
         .card {
-            width: calc(100% / 6 - 10px);
-            margin: 5px;
+            width: calc(100% / 5);
             height: 200px;
             margin-top: 30px;
             margin-bottom: 150px;
 
+            .star {
+                color: yellow;
+                font-size: 13px;
+            }
+
             .row {
-                max-width: 135px;
+                max-width: 190px;
                 margin-bottom: 3px;
             }
 
@@ -80,7 +90,8 @@ export default {
             }
 
             img {
-                height: 200px;
+                height: 220px;
+                width: 190px;
             }
 
         }
