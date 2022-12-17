@@ -15,37 +15,21 @@ export default {
 </script>
 
 <template>
-  <div class="noresults" v-if="store.arrayCardsTv.length == 0 && store.arrayCardsMovie.length == 0">
-    <p>No Results Found! Try Again</p>
-  </div>
-  <div class="text">
-    <p v-if="!store.arrayCardsMovie.length == 0">MOVIES</p>
-  </div>
-  <Card :arrCards="store.arrayCardsMovie" />
-  <div class="text">
-    <p v-if="!store.arrayCardsTv.length == 0">TV SERIES</p>
-  </div>
-  <Card :arrCardsTv="store.arrayCardsTv" />
+  <section class="main">
+    <div class="noresults" v-if="store.arrayCardsTv.length == 0 && store.arrayCardsMovie.length == 0">
+      <p>No Results Found! Try Again</p>
+    </div>
+
+    <Card :arrCards="store.arrayCardsMovie" :arrCardsTv="store.arrayCardsTv" />
+  </section>
+
 
 </template>
 
 <style lang="scss" scoped>
-p {
-  width: 70%;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin-left: 15px;
-}
-
-.text {
-  font-size: 30px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  text-align: center;
+.main {
+  height: calc(100vh - 80px);
+  width: 100%;
 }
 
 .noresults {

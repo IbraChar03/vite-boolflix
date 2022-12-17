@@ -70,9 +70,8 @@ export default {
 
   <main>
     <HeaderVue @search="getSearchResults" />
-    <div class="text" v-if="store.showDiv">POPULAR</div>
-    <div class="text" v-if="!store.showDiv && (!store.arrayCardsTv.length == 0 && !store.arrayCardsMovie.length == 0)">
-      BEST RESULTS</div>
+    <!-- <div class="text" v-if="!store.showDiv && (!store.arrayCardsTv.length == 0 && !store.arrayCardsMovie.length == 0)">
+      BEST RESULTS</div> -->
     <MainList />
   </main>
 </template>
