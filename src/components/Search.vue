@@ -59,6 +59,7 @@ export default {
                         <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="icon" @click="$emit(`search`)" />
                     </button>
                 </div>
+
                 <font-awesome-icon icon="fa-solid fa-bell" class="bell" />
             </div>
 
@@ -79,7 +80,7 @@ export default {
 
 
     .cont {
-        width: 95%;
+        width: 90%;
         height: 100%;
         display: flex;
         justify-content: space-between;
@@ -124,13 +125,17 @@ export default {
             justify-content: space-evenly;
             align-items: center;
 
+
+
             .bell {
                 color: white;
                 font-size: 17px;
-                margin-left: 20px;
+                margin-left: 40px;
+                cursor: pointer;
             }
 
             input {
+                color: white;
                 padding: 6px;
                 background-color: black;
                 border-radius: 5px;
@@ -139,7 +144,7 @@ export default {
             }
 
             button {
-                padding: 6px;
+                padding: 5px 8px;
                 background-color: black;
                 border-radius: 5px;
                 cursor: pointer;
@@ -150,6 +155,10 @@ export default {
                     color: white;
                 }
 
+            }
+
+            button:hover {
+                border: 1px solid white;
             }
         }
 

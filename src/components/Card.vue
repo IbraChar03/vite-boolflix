@@ -54,6 +54,7 @@ export default {
             <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
                 <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name>
                 <div class="cont-text">
+
                     <div class="row title">
                         Title : {{ item.name }}
                     </div>
@@ -79,6 +80,7 @@ export default {
                             v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
                     </div>
+
                 </div>
 
             </div>
@@ -116,12 +118,11 @@ export default {
                 width: 100%;
                 height: 100%;
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                inset: 0;
                 background-color: rgba(0, 0, 0, 0.8);
-                text-align: center;
-                padding-top: 50px;
+                padding: 40px 20px;
+                // text-align: start;
+
             }
 
             .star {
@@ -139,18 +140,27 @@ export default {
                 max-width: 190px;
                 margin-bottom: 3px;
                 color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .flag {
                 width: 20px;
                 height: 15px;
                 vertical-align: middle;
+                margin-left: 5px;
             }
 
             img {
-                height: 240px;
-                width: 100%
+                height: 100%;
+                width: 100%;
+                // object-fit: cover;
+                // object-position: center;
+
             }
+
+
 
         }
 
