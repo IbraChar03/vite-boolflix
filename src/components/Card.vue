@@ -96,7 +96,7 @@ export default {
     align-items: center;
 
     .container {
-        width: 65%;
+        width: 70%;
         height: 100%;
         display: flex;
         justify-content: start;

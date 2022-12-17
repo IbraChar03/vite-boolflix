@@ -83,7 +83,7 @@ export default {
 @use "./styles/general.scss" as *;
 
 .text {
-  font-size: 30px;
+  font-size: 35px;
   color: white;
   font-weight: bold;
   text-align: center;
