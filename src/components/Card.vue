@@ -20,7 +20,8 @@ export default {
     <section class="main">
         <div class="container">
             <div class="card" v-for="(item, index) in arrCards" :key="item.id">
-                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title>
+                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title
+                    onerror="this.src='/images/notfound.webp';">
                 <div class="cont-text">
                     <div class="row title">
                         Title : {{ item.title }}
@@ -52,7 +53,8 @@ export default {
             </div>
 
             <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
-                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name>
+                <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name
+                    onerror="this.src='/images/notfound.webp';">
                 <div class="cont-text">
 
                     <div class="row title">
