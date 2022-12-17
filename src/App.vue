@@ -66,12 +66,10 @@ export default {
 
 <template>
   <header>
+    <HeaderVue @search="getSearchResults" />
   </header>
 
   <main>
-    <HeaderVue @search="getSearchResults" />
-    <!-- <div class="text" v-if="!store.showDiv && (!store.arrayCardsTv.length == 0 && !store.arrayCardsMovie.length == 0)">
-      BEST RESULTS</div> -->
     <MainList />
   </main>
 </template>

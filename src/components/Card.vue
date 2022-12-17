@@ -207,12 +207,8 @@ export default {
             }
 
             img {
-                // height: 100%;
-                // width: 100%;
                 height: 240px;
                 width: 200px;
-                // object-fit: cover;
-                // object-position: center;
 
             }
 

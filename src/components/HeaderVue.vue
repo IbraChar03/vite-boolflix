@@ -33,6 +33,11 @@ export default {
         activeLink(index) {
             this.active = index
 
+        },
+        displayInput() {
+            let inp = document.querySelector("input")
+            inp.style.display = "flex"
+
         }
     }
 }
@@ -53,9 +58,9 @@ export default {
             </div>
 
             <div class="search">
-                <div>
+                <div class="inp">
                     <input type="text" v-model="store.searchInput">
-                    <button>
+                    <button @click="displayInput()">
                         <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="icon" @click="$emit(`search`)" />
                     </button>
                 </div>
@@ -63,7 +68,7 @@ export default {
                 <font-awesome-icon icon="fa-solid fa-bell" class="bell" />
                 <div class="profile">
                     <img src="/images/profilepicture.png" alt="" class="imgprofile">
-                    <font-awesome-icon icon="fa-solid fa-angle-down" class="angle" />
+                    <font-awesome-icon icon="fa-solid fa-sort-down" class="angle" />
 
                 </div>
             </div>
@@ -128,6 +133,10 @@ export default {
             justify-content: space-evenly;
             align-items: center;
 
+            .inp {
+                display: flex;
+            }
+
             .profile {
                 display: flex;
                 justify-content: center;
@@ -138,17 +147,16 @@ export default {
                 .imgprofile {
                     height: 40px;
                     width: 40px;
-                    vertical-align: middle;
                     cursor: pointer;
 
                 }
 
                 .angle {
-                    font-size: 20px;
+                    font-size: 15px;
                     color: white;
-                    vertical-align: middle;
                     margin-left: 10px;
                     cursor: pointer;
+                    padding-bottom: 5px;
 
                 }
             }
@@ -158,11 +166,12 @@ export default {
             .bell {
                 color: white;
                 font-size: 20px;
-                margin-left: 20px;
+                margin: 0px 15px;
                 cursor: pointer;
             }
 
             input {
+                display: none;
                 color: white;
                 padding: 6px;
                 background-color: black;
