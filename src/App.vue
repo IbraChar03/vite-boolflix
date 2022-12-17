@@ -3,12 +3,11 @@ import axios from "axios"
 import { store } from "./store.js"
 import MainList from './components/MainList.vue'
 import HeaderVue from './components/HeaderVue.vue'
-import Search from './components/Search.vue'
 export default {
   components: {
     MainList,
     HeaderVue,
-    Search,
+
   },
   data() {
     return {
@@ -67,11 +66,10 @@ export default {
 
 <template>
   <header>
-    <HeaderVue />
   </header>
 
   <main>
-    <Search @search="getSearchResults" />
+    <HeaderVue @search="getSearchResults" />
     <div class="text" v-if="store.showDiv">POPULAR</div>
     <div class="text" v-if="!store.showDiv && (!store.arrayCardsTv.length == 0 && !store.arrayCardsMovie.length == 0)">
       BEST RESULTS</div>

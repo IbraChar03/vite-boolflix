@@ -31,10 +31,11 @@ export default {
 
 <style lang="scss" scoped>
 p {
-  width: 65%;
+  width: 70%;
   display: flex;
   justify-content: start;
   align-items: center;
+  margin-left: 15px;
 }
 
 .text {

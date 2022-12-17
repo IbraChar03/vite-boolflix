@@ -19,6 +19,7 @@ export default {
 <template>
     <section class="main">
         <div class="container">
+
             <div class="card" v-for="(item, index) in arrCards" :key="item.id">
                 <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title
                     onerror="this.src='/images/notfound.webp';">
@@ -51,6 +52,7 @@ export default {
                 </div>
 
             </div>
+
 
             <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
                 <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name
@@ -105,6 +107,7 @@ export default {
         display: flex;
         justify-content: start;
         flex-wrap: wrap;
+
 
         .card {
             width: calc(100% / 5 - 20px);

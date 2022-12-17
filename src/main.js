@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBell, faHatWizard, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faBell, faHatWizard, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faHatWizard, faStar, faMagnifyingGlass, faBell)
+library.add(faHatWizard, faStar, faMagnifyingGlass, faBell, faAngleDown)
 
 
 createApp(App)
