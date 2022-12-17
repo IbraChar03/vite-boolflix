@@ -13,20 +13,19 @@ export default {
   data() {
     return {
       store,
-      showDiv: true,
     }
   },
   methods: {
     getApiMovie() {
       let api = `${store.apiMovie}?${store.apiKey}&page=1`
       if (store.searchInput !== "") {
-        this.showDiv = false
+        store.showDiv = false
         api = `https://api.themoviedb.org/3/search/movie?${store.apiKey}&query=${store.searchInput}`
       }
       axios
         .get(api)
         .then(res => {
-          store.arrayCards = res.data.results;
+          store.arrayCardsMovie = res.data.results;
 
         })
         .catch(err => {
@@ -34,27 +33,28 @@ export default {
         });
 
     },
-    getApiTv() {
-      let apiTv = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
+    getApiTv2() {
+      let api = `${store.apiTv}?${store.apiKey}&page=1`
       if (store.searchInput !== "") {
-
-
-        axios
-          .get(apiTv)
-          .then(res => {
-            store.arrayCardsTv = res.data.results;
-
-          })
-          .catch(err => {
-            console.log("errori", err)
-          });
+        store.showDiv = false
+        api = `https://api.themoviedb.org/3/search/tv?${store.apiKey}&query=${store.searchInput}`
       }
+      axios
+        .get(api)
+        .then(res => {
+          store.arrayCardsTv = res.data.results;
 
+        })
+        .catch(err => {
+          console.log("errori", err)
+        });
 
     },
+
     getSearchResults() {
       this.getApiMovie();
-      this.getApiTv();
+      this.getApiTv2();
+
     }
 
   },
@@ -72,8 +72,9 @@ export default {
 
   <main>
     <Search @search="getSearchResults" />
-    <div class="popular" v-if="showDiv">POPULAR</div>
-    <div class="popular" v-if="!showDiv">BEST RESULTS</div>
+    <div class="text" v-if="store.showDiv">POPULAR</div>
+    <div class="text" v-if="!store.showDiv && (!store.arrayCardsTv.length == 0 && !store.arrayCardsMovie.length == 0)">
+      BEST RESULTS</div>
     <MainList />
   </main>
 </template>
@@ -81,7 +82,7 @@ export default {
 <style lang="scss">
 @use "./styles/general.scss" as *;
 
-.popular {
+.text {
   font-size: 30px;
   color: white;
   font-weight: bold;

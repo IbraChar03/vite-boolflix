@@ -99,7 +99,7 @@ export default {
         width: 65%;
         height: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         flex-wrap: wrap;
 
         .card {
@@ -119,7 +119,7 @@ export default {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background-color: black;
+                background-color: rgba(0, 0, 0, 0.8);
                 text-align: center;
                 padding-top: 50px;
             }
@@ -156,6 +156,7 @@ export default {
 
         .card:hover .cont-text {
             display: block;
+            cursor: pointer;
         }
 
     }
