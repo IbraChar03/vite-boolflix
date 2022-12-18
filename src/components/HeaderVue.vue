@@ -141,7 +141,7 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-left: 20px;
+                margin-left: 10px;
 
 
                 .imgprofile {

@@ -10,9 +10,7 @@ export default {
             store
         }
     },
-    methods: {
 
-    }
 }
 </script>
 
@@ -32,16 +30,17 @@ export default {
                     <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title
                         onerror="this.src='/images/notfound.webp';">
                     <div class="cont-text">
+
                         <div class="row title">
                             Title : {{ item.title }}
                         </div>
-                        <div class="row title">
+                        <div class="row title" v-if="item.title !== item.original_title">
                             Original title : {{ item.original_title }}
                         </div>
                         <div class="row language"
                             v-if="item.original_language !== `en` && item.original_language !== `ja`">
                             Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"
-                                :alt=item.original_language class="flag">
+                                :alt=item.original_language class="flag" onerror="this.src='/images/missing.png';">
                         </div>
                         <div class="row language" v-else-if="item.original_language == `en`">
                             Language : <img src="/images/england.png" alt="en" class="flag">
@@ -58,6 +57,7 @@ export default {
                                 v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
                         </div>
+
                     </div>
 
                 </div>
@@ -80,14 +80,15 @@ export default {
                         <div class="row title">
                             Title : {{ item.name }}
                         </div>
-                        <div class="row title">
+                        <div class="row title" v-if="item.name !== item.original_name">
                             Original title : {{ item.original_name }}
                         </div>
                         <div class="row language"
                             v-if="item.original_language !== `en` && item.original_language !== `ja`">
                             Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"
-                                :alt=item.original_language class="flag">
+                                :alt=item.original_language class="flag" onerror="this.src='/images/missing.png';">
                         </div>
+
                         <div class="row language" v-else-if="item.original_language == `en`">
                             Language : <img src="/images/england.png" alt="en" class="flag">
                         </div>
@@ -123,7 +124,7 @@ export default {
     align-items: center;
 
     .container {
-        width: 70%;
+        width: 90%;
         height: 100%;
 
         p {
@@ -143,12 +144,12 @@ export default {
             align-items: center;
             font-weight: bold;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         .cont-cards {
             width: 100%;
-            height: 300px;
+            height: 310px;
             display: flex;
             // justify-content: start;
             overflow: hidden;
@@ -158,12 +159,11 @@ export default {
 
 
         .card {
-            // width: calc(100% / 5 - 20px);
             width: 200px;
             margin: 10px;
-            height: 240px;
-            margin-top: 30px;
-            margin-bottom: 50px;
+            height: 260px;
+            margin-top: 20px;
+            margin-bottom: 30px;
             position: relative;
 
 
@@ -174,8 +174,11 @@ export default {
                 position: absolute;
                 inset: 0;
                 background-color: rgba(0, 0, 0, 0.8);
-                padding: 40px 40px;
-                // text-align: start;
+                padding-top: 70px;
+                padding-left: 10px;
+                padding-right: 10px;
+                text-align: center;
+                white-space: pre-wrap;
 
             }
 
@@ -191,12 +194,14 @@ export default {
             }
 
             .row {
-                max-width: 190px;
-                margin-bottom: 3px;
+                margin-bottom: 5px;
+                font-weight: bold;
                 color: white;
+                font-size: 15px;
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                // align-items: center;
+                white-space: pre-wrap
             }
 
             .flag {
@@ -207,7 +212,7 @@ export default {
             }
 
             img {
-                height: 240px;
+                height: 260px;
                 width: 200px;
 
             }
