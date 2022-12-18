@@ -161,12 +161,28 @@ export default {
             overflow: hidden;
             overflow-x: auto;
             white-space: nowrap;
+
+            ::-webkit-scrollbar {
+                width: 12px;
+                /* for vertical scrollbars */
+                height: 12px;
+                /* for horizontal scrollbars */
+            }
+
+            ::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.4);
+            }
+
         }
 
 
         .card {
             width: 200px;
-            margin: 10px;
+            margin: 5px;
             height: 260px;
             margin-top: 20px;
             margin-bottom: 30px;
