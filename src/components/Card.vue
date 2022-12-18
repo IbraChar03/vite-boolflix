@@ -107,7 +107,7 @@ export default {
                                 v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
                         </div>
-                        <div class="row title">
+                        <div class="row title" v-if="item.overview !== ``">
                             Overview : {{ item.overview }}
                         </div>
 
