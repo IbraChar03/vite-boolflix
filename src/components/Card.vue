@@ -46,16 +46,19 @@ export default {
                             Language : <img src="/images/england.png" alt="en" class="flag">
                         </div>
                         <div class="row language" v-else-if="item.original_language == `ja`">
-                            Language : <img src="/images/japan.png" alt="ja" class="flag">
+                            Language: <img src="/images/japan.png" alt="ja" class="flag">
                         </div>
 
                         <div class="row vote">
 
-                            Vote: <font-awesome-icon icon="fa-solid fa-star " class="star"
+                            Vote : <font-awesome-icon icon="fa-solid fa-star " class="star"
                                 v-for="item in Math.round(item.vote_average / 2)" />
                             <font-awesome-icon icon="fa-solid fa-star " class="star2"
                                 v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
+                        </div>
+                        <div class="row title">
+                            Overview : {{ item.overview }}
                         </div>
 
                     </div>
@@ -98,11 +101,14 @@ export default {
 
                         <div class="row vote">
 
-                            Vote: <font-awesome-icon icon="fa-solid fa-star " class="star"
+                            Vote : <font-awesome-icon icon="fa-solid fa-star " class="star"
                                 v-for="item in Math.round(item.vote_average / 2)" />
                             <font-awesome-icon icon="fa-solid fa-star " class="star2"
                                 v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
+                        </div>
+                        <div class="row title">
+                            Overview : {{ item.overview }}
                         </div>
 
                     </div>
@@ -174,11 +180,14 @@ export default {
                 position: absolute;
                 inset: 0;
                 background-color: rgba(0, 0, 0, 0.8);
-                padding-top: 70px;
+                // padding-top: 70px;
+                padding: 20px 0px;
                 padding-left: 10px;
                 padding-right: 10px;
                 text-align: center;
                 white-space: pre-wrap;
+                overflow-y: auto;
+
 
             }
 
@@ -197,7 +206,7 @@ export default {
                 margin-bottom: 5px;
                 font-weight: bold;
                 color: white;
-                font-size: 15px;
+                font-size: 14px;
                 display: flex;
                 justify-content: center;
                 // align-items: center;

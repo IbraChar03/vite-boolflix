@@ -32,7 +32,7 @@ export default {
         });
 
     },
-    getApiTv2() {
+    getApiTv() {
       let api = `${store.apiTv}?${store.apiKey}&page=1`
       if (store.searchInput !== "") {
         store.showDiv = false
@@ -52,7 +52,7 @@ export default {
 
     getSearchResults() {
       this.getApiMovie();
-      this.getApiTv2();
+      this.getApiTv();
 
     }
 
