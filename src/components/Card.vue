@@ -9,40 +9,49 @@ export default {
     data() {
         return {
             store,
+        }
+    },
+    methods: {
+        getMovieCast(id) {
+            axios
+                .get(`https://api.themoviedb.org/3/movie/${id}/credits?${store.apiKey}`)
+                .then(res => {
+                    for (let index = 0; index < 5; index++) {
+                        store.arrayMovieCast.push(res.data.cast[index].name)
+                    }
 
+
+
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            console.log(store.arrayMovieCast);
+        },
+        getTvCast(id) {
+            axios
+                .get(`https://api.themoviedb.org/3/tv/${id}/credits?${store.apiKey}`)
+                .then(res => {
+                    for (let index = 0; index < 5; index++) {
+                        store.arrayTvCast.push(res.data.cast[index].name)
+                    }
+
+
+
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            console.log(store.arrayMovieCast);
+        },
+        resetMovieCast() {
+            store.arrayMovieCast = [];
+        },
+        resetTvCast() {
+            store.arrayTvCast = [];
         }
     },
 
-    mounted() {
-        let api = `https://api.themoviedb.org/3/movie/76600/credits?api_key=4881642f8f2f202c4e6283bd227db882`
-        axios
-            .get(api)
-            .then(res => {
-                for (let index = 0; index < 5; index++) {
-                    store.arrayMovieCast.push(res.data.cast[index].name);
-
-                }
-
-            })
-            .catch(err => {
-                console.log("errori", err)
-            });
-        console.log(store.arrayMovieCast);
-
-
-        //     let api = `https://api.themoviedb.org/3/movie/${element}/credits?api_key=4881642f8f2f202c4e6283bd227db882`
-        //     axios
-        //         .get(api)
-        //         .then(res => {
-        //             store.arrayMovieCast = res.data.cast;
-
-        //         })
-        //         .catch(err => {
-        //             console.log("errori", err)
-        //         });
-        //     console.log(this.arr);
-
-    }
 
 }
 
@@ -58,9 +67,7 @@ export default {
                 <p>MOVIES</p>
             </div>
             <div class="cont-cards">
-
-
-                <div class="card" v-for="(item, index) in arrCards" :key="item.id">
+                <div class="card" v-for="(item, index) in arrCards" :key="item.id" @mouseenter="resetMovieCast">
                     <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title
                         onerror="this.src='/images/notfound.webp';">
 
@@ -96,8 +103,12 @@ export default {
                         <div class="row title" v-if="item.overview !== ``">
                             Overview : {{ item.overview }}
                         </div>
-                        <div class="row title" div v-for="item in store.arrayMovieCast">
-                            Cast : {{ item }}
+                        <div class="cast title" @click="getMovieCast(item.id)">
+                            Click here for the cast
+                            <div v-for="item in store.arrayMovieCast">
+                                {{ item }}
+                            </div>
+
                         </div>
 
 
@@ -115,7 +126,7 @@ export default {
             <div class="cont-cards">
 
 
-                <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
+                <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id" @mouseenter="resetTvCast">
                     <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name
                         onerror="this.src='/images/notfound.webp';">
 
@@ -151,6 +162,13 @@ export default {
                         </div>
                         <div class="row title" v-if="item.overview !== ``">
                             Overview : {{ item.overview }}
+                        </div>
+                        <div class="cast title" @click="getTvCast(item.id)">
+                            Click here for the cast
+                            <div v-for="item in store.arrayTvCast">
+                                {{ item }}
+                            </div>
+
                         </div>
 
                     </div>
@@ -267,6 +285,15 @@ export default {
                 font-size: 14px;
                 display: flex;
                 justify-content: center;
+                // align-items: center;
+                white-space: pre-wrap
+            }
+
+            .cast {
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: white;
+                font-size: 14px;
                 // align-items: center;
                 white-space: pre-wrap
             }
