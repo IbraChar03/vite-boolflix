@@ -34,6 +34,9 @@ export default {
             this.active = index
 
         },
+        svuota() {
+            store.arrayMovieId.length = 0;
+        },
         displayInput() {
             let inp = document.querySelector("input")
             inp.style.display = "flex"
@@ -61,7 +64,8 @@ export default {
                 <div class="inp">
                     <input type="text" v-model="store.searchInput">
                     <button @click="displayInput()">
-                        <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="icon" @click="$emit(`search`)" />
+                        <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="icon"
+                            @click="$emit(`search`), svuota()" />
                     </button>
                 </div>
 

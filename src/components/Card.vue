@@ -1,4 +1,5 @@
 <script >
+import axios from "axios"
 import { store } from "../store.js"
 export default {
     props: {
@@ -10,6 +11,21 @@ export default {
             store
         }
     },
+
+    mounted() {
+        // api = `https://api.themoviedb.org/3/movie/${}/credits?api_key=4881642f8f2f202c4e6283bd227db882`
+        // axios
+        //     .get(api)
+        //     .then(res => {
+        //         store.arrayMovieCast = res.data.cast;
+
+        //     })
+        //     .catch(err => {
+        //         console.log("errori", err)
+        //     });
+
+
+    }
 
 }
 </script>
@@ -29,6 +45,7 @@ export default {
                 <div class="card" v-for="(item, index) in arrCards" :key="item.id">
                     <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.title
                         onerror="this.src='/images/notfound.webp';">
+
                     <div class="cont-text">
 
                         <div class="row title">
@@ -40,7 +57,8 @@ export default {
                         <div class="row language"
                             v-if="item.original_language !== `en` && item.original_language !== `ja`">
                             Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"
-                                :alt=item.original_language class="flag" onerror="this.src='/images/missing.png';">
+                                :alt=item.original_language class="flag" onerror="this.src='/images/missing.png';"
+                                crossorigin="anonymous">
                         </div>
                         <div class="row language" v-else-if="item.original_language == `en`">
                             Language : <img src="/images/england.png" alt="en" class="flag">
@@ -60,10 +78,14 @@ export default {
                         <div class="row title">
                             Overview : {{ item.overview }}
                         </div>
+                        <div>
+                            {{ store.arrayMovieId.push(item.id) }}
+                        </div>
 
                     </div>
 
                 </div>
+
             </div>
             <div class="text" v-if="store.showDiv">
                 <p>POPULAR TV SERIES</p>
@@ -78,6 +100,7 @@ export default {
                 <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
                     <img :src="`${store.UrlImage}${item.poster_path}`" :alt=item.name
                         onerror="this.src='/images/notfound.webp';">
+
                     <div class="cont-text">
 
                         <div class="row title">
@@ -89,7 +112,8 @@ export default {
                         <div class="row language"
                             v-if="item.original_language !== `en` && item.original_language !== `ja`">
                             Language : <img :src="`https://countryflagsapi.com/png/${item.original_language}`"
-                                :alt=item.original_language class="flag" onerror="this.src='/images/missing.png';">
+                                :alt=item.original_language class="flag" onerror="this.src='/images/missing.png';"
+                                crossorigin="anonymous">
                         </div>
 
                         <div class="row language" v-else-if="item.original_language == `en`">
@@ -110,6 +134,7 @@ export default {
                         <div class="row title" v-if="item.overview !== ``">
                             Overview : {{ item.overview }}
                         </div>
+
 
                     </div>
 
@@ -155,7 +180,7 @@ export default {
 
         .cont-cards {
             width: 100%;
-            height: 310px;
+            height: 320px;
             display: flex;
             // justify-content: start;
             overflow: hidden;
@@ -183,7 +208,7 @@ export default {
         .card {
             width: 200px;
             margin: 5px;
-            height: 260px;
+            height: 270px;
             margin-top: 20px;
             margin-bottom: 30px;
             position: relative;
@@ -237,7 +262,7 @@ export default {
             }
 
             img {
-                height: 260px;
+                height: 270px;
                 width: 200px;
 
             }
