@@ -8,26 +8,44 @@ export default {
     },
     data() {
         return {
-            store
+            store,
+
         }
     },
 
     mounted() {
-        // api = `https://api.themoviedb.org/3/movie/${}/credits?api_key=4881642f8f2f202c4e6283bd227db882`
-        // axios
-        //     .get(api)
-        //     .then(res => {
-        //         store.arrayMovieCast = res.data.cast;
+        let api = `https://api.themoviedb.org/3/movie/76600/credits?api_key=4881642f8f2f202c4e6283bd227db882`
+        axios
+            .get(api)
+            .then(res => {
+                for (let index = 0; index < 5; index++) {
+                    store.arrayMovieCast.push(res.data.cast[index].name);
 
-        //     })
-        //     .catch(err => {
-        //         console.log("errori", err)
-        //     });
+                }
 
+            })
+            .catch(err => {
+                console.log("errori", err)
+            });
+        console.log(store.arrayMovieCast);
+
+
+        //     let api = `https://api.themoviedb.org/3/movie/${element}/credits?api_key=4881642f8f2f202c4e6283bd227db882`
+        //     axios
+        //         .get(api)
+        //         .then(res => {
+        //             store.arrayMovieCast = res.data.cast;
+
+        //         })
+        //         .catch(err => {
+        //             console.log("errori", err)
+        //         });
+        //     console.log(this.arr);
 
     }
 
 }
+
 </script>
 
 <template>
@@ -75,12 +93,13 @@ export default {
                                 v-for="item in 5 - (Math.round(item.vote_average / 2))" />
 
                         </div>
-                        <div class="row title">
+                        <div class="row title" v-if="item.overview !== ``">
                             Overview : {{ item.overview }}
                         </div>
-                        <div>
-                            {{ store.arrayMovieId.push(item.id) }}
+                        <div class="row title" div v-for="item in store.arrayMovieCast">
+                            Cast : {{ item }}
                         </div>
+
 
                     </div>
 
@@ -94,7 +113,6 @@ export default {
                 <p>TV SERIES</p>
             </div>
             <div class="cont-cards">
-
 
 
                 <div class="card" v-for="(item, index) in arrCardsTv" :key="item.id">
@@ -134,7 +152,6 @@ export default {
                         <div class="row title" v-if="item.overview !== ``">
                             Overview : {{ item.overview }}
                         </div>
-
 
                     </div>
 
@@ -252,6 +269,10 @@ export default {
                 justify-content: center;
                 // align-items: center;
                 white-space: pre-wrap
+            }
+
+            .none {
+                display: none;
             }
 
             .flag {
