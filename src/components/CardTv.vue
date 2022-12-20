@@ -20,12 +20,11 @@ export default {
                         store.arrayTvCast.push(res.data.cast[index].name)
                     }
 
-
-
                 })
                 .catch(err => {
                     console.log(err);
                 })
+            console.log(store.arrayTvCast);
         },
         resetTvCast() {
             store.arrayTvCast = [];
@@ -78,6 +77,9 @@ export default {
                 Click here for the cast
                 <div v-for="item in store.arrayTvCast">
                     {{ item }}
+                    <div v-if="store.arrayTvCast.length === 0">
+                        no results found
+                    </div>
 
                 </div>
 
@@ -97,7 +99,6 @@ export default {
     margin-bottom: 30px;
     position: relative;
 
-
     .cont-text {
         display: none;
         width: 100%;
@@ -112,7 +113,6 @@ export default {
         text-align: center;
         white-space: pre-wrap;
         overflow-y: auto;
-
 
     }
 
@@ -163,8 +163,6 @@ export default {
         width: 200px;
 
     }
-
-
 
 }
 

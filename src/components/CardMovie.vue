@@ -77,7 +77,10 @@ export default {
                 Click here for the cast
                 <div v-for="item in store.arrayMovieCast">
                     {{ item }}
+
                 </div>
+
+
 
             </div>
 
@@ -162,8 +165,6 @@ export default {
         width: 200px;
 
     }
-
-
 
 }
 
